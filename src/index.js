@@ -4,7 +4,8 @@ function currentWeather(
   description,
   humidity,
   wind_speed,
-  date
+  date,
+  icon
 ) {
   let cityElement = document.querySelector("#city");
   let temperatureElement = document.querySelector("#temperature");
@@ -12,6 +13,7 @@ function currentWeather(
   let humidityElement = document.querySelector("#humidity");
   let wind_speedElement = document.querySelector("#wind-speed");
   let dateElement = document.querySelector("#time");
+  let iconElement = document.querySelector("#icon");
 
   cityElement.innerHTML = city;
   temperatureElement.innerHTML = temperature;
@@ -19,6 +21,7 @@ function currentWeather(
   humidityElement.innerHTML = `${humidity} %`;
   wind_speedElement.innerHTML = `${wind_speed} Km/h`;
   dateElement.innerHTML = date;
+  iconElement.innerHTML = icon;
 }
 
 function weatherData(response) {
@@ -31,7 +34,13 @@ function weatherData(response) {
   let date = new Date(response.data.time * 1000);
   date = formaDate(date);
 
-  currentWeather(city, temperature, description, humidity, wind_speed, date);
+  let icon = `<img
+    src="${response.data.condition.icon_url}"
+    alt=""
+    class="weather-app-icon"
+  />`;
+
+  currentWeather(city, temperature, description, humidity, wind_speed, date, icon);
 }
 
 function formaDate(date) {
@@ -47,6 +56,13 @@ function formaDate(date) {
     "Friday",
     "Saturday",
   ];
+  if (minutes > 10) {
+    minutes = `0${minutes}`;
+  }
+
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
 
   let day = days[date.getDay()];
   return `${day} ${hours}:${minutes}`;
@@ -68,4 +84,4 @@ function handleSearchSubmit(event) {
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
-searchCity("New York");
+searchCity("Yabebyry");
