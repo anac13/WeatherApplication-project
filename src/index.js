@@ -8,6 +8,16 @@ function weatherData(response) {
 
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML = response.data.condition.description;
+
+  let humidityElement = document.querySelector("#humidity");
+  let humidity = response.data.temperature.humidity;
+  humidityElement.innerHTML = `${humidity} %`;
+
+  let wind_speedElement = document.querySelector("#wind-speed");
+  let wind_speed = response.data.wind.speed;
+  wind_speedElement.innerHTML = `${wind_speed} Km/h`;
+
+ 
 }
 
 function searchCity(city) {
