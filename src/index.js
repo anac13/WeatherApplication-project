@@ -1,23 +1,55 @@
-function weatherData(response) {
+function currentWeather(
+  city,
+  temperature,
+  description,
+  humidity,
+  wind_speed,
+  date
+) {
   let cityElement = document.querySelector("#city");
-  cityElement.innerHTML = response.data.city;
-
   let temperatureElement = document.querySelector("#temperature");
-  let temperature = Math.round(response.data.temperature.current);
-  temperatureElement.innerHTML = temperature;
-
   let descriptionElement = document.querySelector("#description");
-  descriptionElement.innerHTML = response.data.condition.description;
-
   let humidityElement = document.querySelector("#humidity");
-  let humidity = response.data.temperature.humidity;
-  humidityElement.innerHTML = `${humidity} %`;
-
   let wind_speedElement = document.querySelector("#wind-speed");
-  let wind_speed = response.data.wind.speed;
-  wind_speedElement.innerHTML = `${wind_speed} Km/h`;
+  let dateElement = document.querySelector("#time");
 
- 
+  cityElement.innerHTML = city;
+  temperatureElement.innerHTML = temperature;
+  descriptionElement.innerHTML = description;
+  humidityElement.innerHTML = `${humidity} %`;
+  wind_speedElement.innerHTML = `${wind_speed} Km/h`;
+  dateElement.innerHTML = date;
+}
+
+function weatherData(response) {
+  let city = response.data.city;
+  let temperature = Math.round(response.data.temperature.current);
+  let description = response.data.condition.description;
+  let humidity = response.data.temperature.humidity;
+  let wind_speed = response.data.wind.speed;
+
+  let date = new Date(response.data.time * 1000);
+  date = formaDate(date);
+
+  currentWeather(city, temperature, description, humidity, wind_speed, date);
+}
+
+function formaDate(date) {
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  let day = days[date.getDay()];
+  return `${day} ${hours}:${minutes}`;
 }
 
 function searchCity(city) {
