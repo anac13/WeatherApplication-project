@@ -40,7 +40,15 @@ function weatherData(response) {
     class="weather-app-icon"
   />`;
 
-  currentWeather(city, temperature, description, humidity, wind_speed, date, icon);
+  currentWeather(
+    city,
+    temperature,
+    description,
+    humidity,
+    wind_speed,
+    date,
+    icon
+  );
 }
 
 function formaDate(date) {
@@ -84,4 +92,4 @@ function handleSearchSubmit(event) {
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
-searchCity("Yabebyry");
+searchCity("New York");
