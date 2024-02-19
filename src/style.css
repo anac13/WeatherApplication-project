@@ -98,11 +98,9 @@ main {
 .weather-app-unit {
   font-size: 23px;
   margin-top: 10px;
-  
-  
 }
 
-.weather-forecast .row{
+.weather-forecast {
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
@@ -116,7 +114,7 @@ main {
 }
 
 .weather-forecast-temperature {
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .weather-forecast-temperature-min {
