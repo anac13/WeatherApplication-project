@@ -27,7 +27,7 @@
           <input type="submit" value="Search" class="search-form-button" />
         </form>
       </header>
-      <section>
+      <main>
         <div class="weather-app-data">
           <div class="weather-app-data-current">
             <h1 class="weather-app-city" id="city"></h1>
@@ -46,7 +46,27 @@
             </div>
           </div>
         </div>
-      </section>
+        <div class="weather-forecast">
+          <div class="row">
+            <div class="col-2">
+              <div class="weather-forecast-date">
+                Thu
+              </div>
+              <img
+                src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+                alt=""
+                width="20px"
+                class="weather-icon"
+              />
+              <div class="weather-forecast-temperature">
+                <span class="weather-forecast-temperature-max">15</span>
+                <span class="weather-forecast-temperature-min">18</span>   
+               </div>
+            </div>
+            
+          </div>
+        </div>
+      </main>
       <footer>
         Coded by
         <a href="https://github.com/anac13" target="_blank">Ana Cañete</a> and
@@ -57,7 +77,11 @@
           is open-sourced on GitHub</a
         >
         and
-        <a href="https://shecodes-weather-project-app.netlify.app/" target="_blank">hosted on Netlify</a>
+        <a
+          href="https://shecodes-weather-project-app.netlify.app/"
+          target="_blank"
+          >hosted on Netlify</a
+        >
       </footer>
     </div>
   </body>
