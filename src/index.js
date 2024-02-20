@@ -80,6 +80,7 @@ function searchCity(city) {
   let apiKey = "b9of4f791t3095ebe30890c6aaeec246";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(weatherData);
+  getForecast(apiKey, city);
 }
 
 function handleSearchSubmit(event) {
@@ -90,7 +91,14 @@ function handleSearchSubmit(event) {
 }
 
 //Apartado del pronostico
-function displayForecast() {
+
+function getForecast(apiKey, city) {
+  apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios(apiUrl).then(displayForecast);
+}
+
+function displayForecast(response) {
+  console.log(response.data);
   let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
   let forecastHTML = "";
   days.forEach(function (day) {
@@ -118,4 +126,3 @@ let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("New York");
-displayForecast();
