@@ -91,10 +91,14 @@ function handleSearchSubmit(event) {
 
 //Apartado del pronostico
 function displayForecast() {
-  let forecast = document.querySelector("#weather-forecast");
-  forecast.innerHTML = `
-  <div class="weather-forecast-day">
-    <div class="weather-forecast-date">Thu</div>
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+  let forecastHTML = "";
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    <div class="weather-forecast-day">
+     <div class="weather-forecast-date">${day}</div>
       <div class="weather-forecast-icon">🌒</div>
         <div class="weather-forecast-temperature">
           <div class="weather-forecast-temperature">
@@ -104,10 +108,14 @@ function displayForecast() {
             <span class="weather-forecast-temperature-min">18</span>
          </div>
        </div>
-  </div>
+   </div>
   `;
+  });
+  let forecastElement = document.querySelector("#weather-forecast");
+  forecastElement.innerHTML = forecastHTML;
 }
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("New York");
+displayForecast();

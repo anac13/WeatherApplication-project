@@ -55,7 +55,7 @@ main {
 .weather-app-data-current {
   background-color: #00181c3d;
   border-radius: 10px;
-  padding: 10px 50px 10px 10px;
+  padding: 10px 25px 10px 10px;
 }
 .weather-app-city {
   color: #00181c;
