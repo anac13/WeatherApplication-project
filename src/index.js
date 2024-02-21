@@ -64,6 +64,7 @@ function formaDate(date) {
     "Friday",
     "Saturday",
   ];
+
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
@@ -97,16 +98,22 @@ function getForecast(apiKey, city) {
   axios(apiUrl).then(displayForecast);
 }
 
+function formatDay(timetamp) {
+  let date = new Date(timetamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let con = days[date.getDay()];
+  return days[date.getDay()];
+}
+
 function displayForecast(response) {
-  console.log(response.data);
   let forecastHTML = "";
   response.data.daily.forEach(function (day, index) {
-    if (index > 0 && index < 6) {
+    if (index > 0 &&  index < 6) {
       forecastHTML =
         forecastHTML +
         `
         <div class="weather-forecast-day">
-         <div class="weather-forecast-date">Sat</div>
+         <div class="weather-forecast-date">${formatDay(day.time)} </div>
          <img src="${day.condition.icon_url}" class="weather-forecast-icon"/>
       
          <div class="weather-forecast-temperature">
