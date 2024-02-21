@@ -1,10 +1,10 @@
+//Details of the day's current weather are shown - Se muestra los detalles el clima actual del día
 function currentWeather(
   city,
   temperature,
   description,
   humidity,
   wind_speed,
-  date,
   icon
 ) {
   let cityElement = document.querySelector("#city");
@@ -12,7 +12,7 @@ function currentWeather(
   let descriptionElement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
   let wind_speedElement = document.querySelector("#wind-speed");
-  let dateElement = document.querySelector("#time");
+
   let iconElement = document.querySelector("#icon");
 
   cityElement.innerHTML = city;
@@ -20,19 +20,27 @@ function currentWeather(
   descriptionElement.innerHTML = description;
   humidityElement.innerHTML = `${humidity} %`;
   wind_speedElement.innerHTML = `${wind_speed} Km/h`;
-  dateElement.innerHTML = date;
+
   iconElement.innerHTML = icon;
 }
 
+//The time zone of the current city is displayed - Se muestra la zona horaria de la ciudad actual
+function currentTime(date) {
+  let dateElement = document.querySelector("#time");
+  dateElement.innerHTML = date;
+}
+
+//Extracts the necessary data from the API - Se extrae los datos necesarios de la API
 function weatherData(response) {
   let city = response.data.city;
   let temperature = Math.round(response.data.temperature.current);
   let description = response.data.condition.description;
   let humidity = response.data.temperature.humidity;
   let wind_speed = response.data.wind.speed;
+  let longitude = response.data.coordinates.longitude;
+  let latitude = response.data.coordinates.latitude;
 
-  let date = new Date(response.data.time * 1000);
-  date = formaDate(date);
+  searchTimeZone(longitude, latitude);
 
   let icon = `<img
     src="${response.data.condition.icon_url}"
@@ -40,17 +48,10 @@ function weatherData(response) {
     class="weather-app-icon"
   />`;
 
-  currentWeather(
-    city,
-    temperature,
-    description,
-    humidity,
-    wind_speed,
-    date,
-    icon
-  );
+  currentWeather(city, temperature, description, humidity, wind_speed, icon);
 }
 
+//The time zone of the current city is generated - Se genera la zona horaria de la ciudad actual
 function formaDate(date) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
@@ -74,9 +75,25 @@ function formaDate(date) {
   }
 
   let day = days[date.getDay()];
-  return `${day} ${hours} : ${minutes}`;
+  let time = `${day} ${hours} : ${minutes} `;
+  currentTime(time);
 }
 
+//The time zone is looked up in the API, using the latitude and longitude from the previous API -
+//Se busca la zona horaria en la API, usando la latitud y longitud de la API anterior
+function searchTimeZone(longitude, latitude) {
+  let apikey = "UQ5WNACRROX6";
+  let apiUrl = `https://api.timezonedb.com/v2.1/get-time-zone?key=${apikey}&format=json&by=position&lat=${latitude}&lng=${longitude}`;
+  axios(apiUrl).then(zoneTime);
+}
+
+///Extracts the necessary data from the API - Se extrae los datos necesarios de la API
+function zoneTime(response) {
+  let timeZone = new Date(response.data.formatted);
+  formaDate(timeZone);
+}
+
+//Searching for the new city in the API - Se busca la nueva ciudad en la API
 function searchCity(city) {
   let apiKey = "b9of4f791t3095ebe30890c6aaeec246";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
@@ -84,11 +101,13 @@ function searchCity(city) {
   getForecast(apiKey, city);
 }
 
+//Search engine data is saved - Se guarda el dato del buscador
 function handleSearchSubmit(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#search-form-input");
 
   searchCity(searchInput.value);
+  searchTimeZone(searchInput.value);
 }
 
 //Apartado del pronostico
@@ -108,7 +127,7 @@ function formatDay(timetamp) {
 function displayForecast(response) {
   let forecastHTML = "";
   response.data.daily.forEach(function (day, index) {
-    if (index > 0 &&  index < 6) {
+    if (index > 0 && index < 6) {
       forecastHTML =
         forecastHTML +
         `
