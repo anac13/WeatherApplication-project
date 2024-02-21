@@ -113,6 +113,10 @@ main {
   opacity: 0.6;
 }
 
+.weather-forecast-icon {
+  width: 80%;
+}
+
 .weather-forecast-temperature {
   font-size: 15px;
 }
