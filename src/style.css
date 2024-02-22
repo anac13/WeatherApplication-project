@@ -5,8 +5,9 @@ body {
 a {
   color: #daf299;
 }
+
 .weather-app {
-  background-image: url("../image/fondo.jpg");
+ 
   border: 2px solid #00a267;
   background-size: cover;
   background-repeat: no-repeat;
