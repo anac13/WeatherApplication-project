@@ -158,17 +158,17 @@ function displayForecast(response) {
 function backgroundChange(hour) {
   let hours = hour.getHours();
 
-  if ((hours) => 5 && hours <= 8) {
+  if (hours <= 8) {
     let image =
       "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/116/290/original/sunrise.jpeg?1708610805";
     var backgroundElement = document.getElementById("weather-app");
     backgroundElement.style["background-image"] = `url(${image})`;
-  } else if ((hours) => 8 && hours <= 17) {
+  } else if (hours > 8 && hours <= 17) {
     let image =
       "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/116/291/original/noon.jpeg?1708610818";
     var backgroundElement = document.getElementById("weather-app");
     backgroundElement.style["background-image"] = `url(${image})`;
-  } else if ((hours) => 17 && hours <= 5) {
+  } else if (hours > 17) {
     let image =
       "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/116/289/original/night.jpeg?1708610790";
     var backgroundElement = document.getElementById("weather-app");
