@@ -13,43 +13,55 @@
     <link rel="stylesheet" href="src/style.css" />
     <title>Weather App</title>
   </head>
-  <body>
-    <div class="weather-app" id="weather-app">
-      <header>
-        <form class="search-form" id="search-form">
-          <input
-            type="search"
-            placeholder="Enter a city..."
-            required
-            class="search-form-input"
-            id="search-form-input"
-          />
-          <input type="submit" value="Search" class="search-form-button" />
-        </form>
-      </header>
-      <main>
-        <div class="weather-app-data">
-          <div class="weather-app-data-current">
-            <h1 class="weather-app-city" id="city"></h1>
-            <p class="weather-app-details">
-              <span id="time"></span>, <span id="description"></span>
-              <br />
-              Humidity: <strong id="humidity"></strong>, wind:
-              <strong id="wind-speed"></strong>
-            </p>
-          </div>
-          <div class="weather-app-current-details">
-            <div class="weather-app-current">
-              <div id="icon"></div>
-              <div class="weather-app-temperature" id="temperature"></div>
-              <div class="weather-app-unit">°C</div>
+  <body id="app">
+    <div >
+      <div class="weather-app" id="weather-app">
+        <header>
+          <form class="search-form" id="search-form">
+            <input
+              type="search"
+              placeholder="Enter a city..."
+              required
+              class="search-form-input"
+              id="search-form-input"
+            />
+            <input type="submit" value="Search" class="search-form-button" />
+          </form>
+        </header>
+        <main>
+          <div class="weather-app-data">
+            <div class="weather-app-data-current">
+              <h1 class="weather-app-city" id="city"></h1>
+              <div class="details time">
+                <span id="time"></span>
+              </div>
+            </div>
+            <div class="weather-app-current-details">
+              <div class="weather-app-current">
+                <div id="icon"></div>
+                <div class="weather-app-temperature" id="temperature"></div>
+                <div class="weather-app-unit">°C</div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="weather-forecast" id="weather-forecast">
-          
-        </div>
-      </main>
+          <div class="details">
+            <div class="description today">
+              <span id="description"></span>
+            </div>
+            <div class="description">
+              Humidity: <strong id="humidity"></strong>
+            </div>
+            <div class="description">
+              wind:
+              <strong id="wind-speed"></strong>
+            </div>
+          </div>
+
+          <div class="weather-forecast-details">
+            <div class="weather-forecast" id="weather-forecast"></div>
+          </div>
+        </main>
+      </div>
       <footer>
         Coded by
         <a href="https://github.com/anac13" target="_blank">Ana Cañete</a> and
