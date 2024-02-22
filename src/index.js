@@ -160,19 +160,31 @@ function backgroundChange(hour) {
 
   if (hours <= 8) {
     let image =
-      "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/116/290/original/sunrise.jpeg?1708610805";
-    var backgroundElement = document.getElementById("weather-app");
+      "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/116/313/original/sunrise.jpeg?1708622998";
+    let backgroundElement = document.getElementById("weather-app");
     backgroundElement.style["background-image"] = `url(${image})`;
-  } else if (hours > 8 && hours <= 17) {
+
+    let bodyElement = document.getElementById("app")
+    bodyElement.style["backgroundColor"] = "#29204fdc";
+
+  } 
+  else if (hours > 8 && hours <= 17) {
     let image =
-      "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/116/291/original/noon.jpeg?1708610818";
-    var backgroundElement = document.getElementById("weather-app");
+      "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/116/311/original/noon.jpeg?1708622978";
+    let backgroundElement = document.getElementById("weather-app");
     backgroundElement.style["background-image"] = `url(${image})`;
-  } else if (hours > 17) {
+
+    let bodyElement = document.getElementById("app");
+    bodyElement.style["backgroundColor"] = "#7DC3CBdc";
+  } 
+  else if (hours > 17) {
     let image =
-      "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/116/289/original/night.jpeg?1708610790";
-    var backgroundElement = document.getElementById("weather-app");
+      "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/116/312/original/night.jpeg?1708622983";
+    let backgroundElement = document.getElementById("weather-app");
     backgroundElement.style["background-image"] = `url(${image})`;
+
+    let bodyElement = document.getElementById("app");
+    bodyElement.style["backgroundColor"] = "#bb8497dc";
   }
 }
 
